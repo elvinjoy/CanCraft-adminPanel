@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Akira+Expanded&display=swap');
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #dee3e7;
+    transition: left 0.3s ease-in-out;
+    z-index: 999;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar-content {
+    padding: 20px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-menu li {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.sidebar-menu li a {
+    font-family: "Merriweather", serif;
+    color: #0f0e0e;
+    text-decoration: none;
+}
+
+.sidebar-menu li a:hover {
+    text-decoration: underline;
+    list-style: none;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-header h4 {
+    margin-top: 15px;
+    margin-left: 28px;
+    color: #050505;
+    font-family: 'Akira Expanded', sans-serif; /* Add this line to apply the font */
+}
+
+
+.close-btn {
+    margin-left: auto; 
+    color: black; 
+    background-color: transparent; 
+    border: none;
+    cursor: pointer;
+    font-size: 28px; /* Increase the font size */
+    padding: 5px;
+}
+
+
+/* Navbar */
+
+.navbar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 63px;
+    background-color: #ebeff3;
+    z-index: 998;
+    width: 100vw;
+}
+
+.navbar-logo {
+    min-width: 10px;
+    min-height: 20px;
+    width: 135px; 
+    height: auto; 
+    margin-right: auto; /* Add this line to center the logo */
+    margin-left: auto; /* Add this line to center the logo */
+}
+
+
+.navbar-toggler {
+    border: none;
+    background-color: transparent;
+}
+
+.navbar-toggler-icon {
+    color: #fff; 
+}
+
+.navbar-brand:hover {
+    color: #665c5c; 
+    text-decoration: none;
+}
+
+.container-fluid {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Additional CSS */
+.container-fluid p {
+    font-family: "Merriweather", serif;
+    color: #756a6a; 
+    font-size: 1.25rem;
+    text-decoration: none; 
+    margin: 0; 
+    padding: 0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Sidebar HR */
+hr {
+    border: none;
+    height: 1px;
+    background-color: #fff; /* White color */
+    box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12); /* White shadow effect */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* For screens smaller than 575.98px (extra small devices) */
+@media (max-width: 575.98px) {
+    .sidebar {
+        width: 250px;
+        left: -250px;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .navbar-logo {
+        max-width: 80%; /* Adjust the maximum width for smaller screens */
+    }
+}
