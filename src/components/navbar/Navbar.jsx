@@ -36,7 +36,7 @@ const NavbarComponent = () => {
         <>
             <div className={`sidebar ${sidebarOpen ? 'active' : ''}`}>
                 <div className="sidebar-header">
-                    <h4>CANCRAFT</h4>
+                    <h4>Admin Panel</h4>
                     <button className="close-btn" onClick={closeSidebar}>
                         <i className="bi bi-x text-dark"></i>
                     </button>
@@ -44,11 +44,11 @@ const NavbarComponent = () => {
                 <hr />
                 <div className="sidebar-content">
                     <ul className="sidebar-menu">
+                        <li><Link to="/">View orders</Link></li>
+                        <li><Link to="/">Manage Users</Link></li>
+                        <li><Link to="/">Add New Size Ratio</Link></li>
                         <li><Link to="/">Demo</Link></li>
-                        <li><Link to="/">Demo</Link></li>
-                        <li><Link to="/">Demo</Link></li>
-                        <li><Link to="/">Demo</Link></li>
-                        <li><Link to="/">Demo</Link></li>
+                        <li><Link to="/">Logout</Link></li>
                     </ul>
                 </div>
             </div>
