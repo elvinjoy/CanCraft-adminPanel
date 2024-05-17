@@ -21,6 +21,7 @@
   font-family: "Teachers", sans-serif;
   font-weight: 400;
   font-style: normal;
+  text-decoration: none !important;
 }
 
 /* Hover effect for cards */
@@ -32,6 +33,10 @@
 .card-body {
   position: relative;
   z-index: 1;
+}
+
+.card-body a {
+  text-decoration: none;
 }
 
 .cart {
@@ -71,4 +76,8 @@
 
 .custom-margin-top {
   margin-top: 10px; /* Adjust the value as needed */
+}
+
+a {
+  text-decoration: none !important;
 }
