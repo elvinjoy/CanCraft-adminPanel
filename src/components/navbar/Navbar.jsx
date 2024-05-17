@@ -44,8 +44,8 @@ const NavbarComponent = () => {
                 <hr />
                 <div className="sidebar-content">
                     <ul className="sidebar-menu">
-                        <li><Link to="/">View orders</Link></li>
-                        <li><Link to="/">Manage Users</Link></li>
+                        <li><Link to="/vieworders">View orders</Link></li>
+                        <li><Link to="/manageusers">Manage Users</Link></li>
                         <li><Link to="/">Add New Size Ratio</Link></li>
                         <li><Link to="/">Demo</Link></li>
                         <li><Link to="/">Logout</Link></li>
