@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from '../../assets/cancraft-logo-small.png';
+import logo from '../../assets/cancraft-logo-white.png';
 import { Link } from 'react-router-dom';
 import './navbar.css';
 
-const Navbar = () => {
+const NavbarComponent = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     const toggleSidebar = () => {
@@ -44,11 +44,11 @@ const Navbar = () => {
                 <hr />
                 <div className="sidebar-content">
                     <ul className="sidebar-menu">
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="#">Orders</Link></li>
-                        <li><Link to="#">Cart</Link></li>
-                        <li><Link to="#">Help</Link></li>
-                        <li><Link to="#">Log out</Link></li>
+                        <li><Link to="/">Demo</Link></li>
+                        <li><Link to="/">Demo</Link></li>
+                        <li><Link to="/">Demo</Link></li>
+                        <li><Link to="/">Demo</Link></li>
+                        <li><Link to="/">Demo</Link></li>
                     </ul>
                 </div>
             </div>
@@ -68,4 +68,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default NavbarComponent;

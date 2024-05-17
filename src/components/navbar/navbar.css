@@ -8,7 +8,7 @@
     left: -250px;
     width: 250px;
     height: 100%;
-    background-color: #dee3e7;
+    background-color: #e9e5e5; /* Light gray background */
     transition: left 0.3s ease-in-out;
     z-index: 999;
 }
@@ -74,7 +74,7 @@
     justify-content: center;
     align-items: center;
     height: 63px;
-    background-color: #ebeff3;
+    background-color: #167786 !important; /* Light blue background */
     z-index: 998;
     width: 100vw;
 }

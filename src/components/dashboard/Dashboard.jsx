@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import NavbarComponent from '../navbar/Navbar';
+import './Dashboard.css';
 
-const Dashboard = () => {
+const DashboardComponent = () => {
+  const [showWelcomeText, setShowWelcomeText] = useState(false);
+
+  useEffect(() => {
+    setShowWelcomeText(true);
+  }, []);
+
   return (
     <>
-
-      <h1>Welcome to Admin Dashboard</h1>
-
+      <NavbarComponent />
     </>
   );
 }
 
-export default Dashboard;
+export default DashboardComponent;
