@@ -44,11 +44,11 @@ const NavbarComponent = () => {
                 <hr />
                 <div className="sidebar-content">
                     <ul className="sidebar-menu">
-                        <li><Link to="/vieworders">View orders</Link></li>
-                        <li><Link to="/manageusers">Manage Users</Link></li>
-                        <li><Link to="/addnewsizeratio">Add New Size Ratio</Link></li>
-                        <li><Link to="/Card4">card 4</Link></li>
-                        <li><Link to="/">Logout</Link></li>
+                        <Link to="/vieworders"><li>View orders</li></Link>
+                        <Link to="/manageusers"><li>Manage Users</li></Link>
+                        <Link to="/addnewsizeratio"><li>Add New Size Ratio</li></Link>
+                        <Link to="/Card4"><li>card 4</li></Link>
+                        <Link to="/logout"><li>Logout</li></Link>
                     </ul>
                 </div>
             </div>

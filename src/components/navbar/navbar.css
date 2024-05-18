@@ -35,11 +35,11 @@
     font-family: "Merriweather", serif;
     color: #0f0e0e;
     text-decoration: none;
+    display: block; /* Make the entire area clickable */
 }
 
 .sidebar-menu li a:hover {
     text-decoration: underline;
-    list-style: none;
 }
 
 .sidebar-header {
@@ -51,23 +51,20 @@
     margin-top: 15px;
     margin-left: 28px;
     color: #050505;
-    font-family: 'Akira Expanded', sans-serif; /* Add this line to apply the font */
+    font-family: 'Akira Expanded', sans-serif; /* Apply the font */
 }
 
-
 .close-btn {
-    margin-left: auto; 
-    color: black; 
-    background-color: transparent; 
+    margin-left: auto;
+    color: black;
+    background-color: transparent;
     border: none;
     cursor: pointer;
-    font-size: 28px; 
+    font-size: 28px;
     padding: 5px;
 }
 
-
 /* Navbar */
-
 .navbar {
     position: relative;
     display: flex;
@@ -82,12 +79,11 @@
 .navbar-logo {
     min-width: 10px;
     min-height: 20px;
-    width: 135px; 
-    height: auto; 
-    margin-right: auto; /* Add this line to center the logo */
-    margin-left: auto; /* Add this line to center the logo */
+    width: 135px;
+    height: auto;
+    margin-right: auto;
+    margin-left: auto;
 }
-
 
 .navbar-toggler {
     border: none;
@@ -95,11 +91,11 @@
 }
 
 .navbar-toggler-icon {
-    color: #fff; 
+    color: #fff;
 }
 
 .navbar-brand:hover {
-    color: #665c5c; 
+    color: #665c5c;
     text-decoration: none;
 }
 
@@ -114,11 +110,11 @@
 /* Additional CSS */
 .container-fluid p {
     font-family: "Merriweather", serif;
-    color: #756a6a; 
+    color: #756a6a;
     font-size: 1.25rem;
-    text-decoration: none; 
-    margin: 0; 
-    padding: 0; 
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -132,6 +128,23 @@ hr {
     box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12); /* White shadow effect */
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+/* Styles for the list items inside the sidebar */
+.sidebar-menu li {
+    padding: 10px;
+    font-size: 16px;
+    font-family: "Merriweather", serif;
+    color: #0f0e0e;
+}
+
+.sidebar-menu li:hover {
+    background-color: #dcdcdc; /* Light gray background on hover */
+    border-radius: 4px;
+}
+
+.sidebar-menu li a {
+    color: inherit; /* Inherit the color from li */
 }
 
 /* For screens smaller than 575.98px (extra small devices) */
