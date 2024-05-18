@@ -29,6 +29,8 @@
 .sidebar-menu li {
     padding: 10px;
     font-size: 16px;
+    border-top: 1px solid #ccc; /* Light gray border top */
+    border-bottom: 1px solid #ccc; /* Light gray border bottom */
 }
 
 .sidebar-menu li a {
@@ -136,6 +138,8 @@ hr {
     font-size: 16px;
     font-family: "Merriweather", serif;
     color: #0f0e0e;
+    border-top: 1px solid #ccc; /* Light gray border top */
+    border-bottom: 1px solid #ccc; /* Light gray border bottom */
 }
 
 .sidebar-menu li:hover {
