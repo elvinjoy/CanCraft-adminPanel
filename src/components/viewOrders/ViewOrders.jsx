@@ -198,7 +198,7 @@ const ViewOrders = () => {
                 <Table striped bordered hover>
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>si.no</th>
                             <th>Product</th>
                             <th>Name</th>
                             <th>Amount</th>

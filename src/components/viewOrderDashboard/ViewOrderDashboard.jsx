@@ -173,19 +173,23 @@ const ViewOrderDashboard = () => {
                     <Table striped bordered hover>
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th>si.no</th>
                                 <th>Product</th>
                                 <th>Name</th>
                                 <th>Amount</th>
+                                <th>Email</th>
+                                <th>Ph.No</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {orders.slice(0, visibleOrders).map((order) => (
+                            {orders.slice(0, visibleOrders).reverse().map((order) => (
                                 <tr key={order.id}>
                                     <td>{order.id}</td>
                                     <td>{order.product}</td>
                                     <td>{order.name}</td>
                                     <td>{order.amount}</td>
+                                    <td>{order.email}</td>
+                                    <td>{order.phone}</td>
                                 </tr>
                             ))}
                         </tbody>
