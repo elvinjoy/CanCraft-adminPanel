@@ -157,13 +157,8 @@ const ViewOrderDashboard = () => {
         }
     ];
 
-    const [visibleOrders, setVisibleOrders] = useState(10);
+    const visibleOrders = orders.slice(-8).reverse();
     const navigate = useNavigate();
-
-    const handleSeeMore = () => {
-        setVisibleOrders(prevVisibleOrders => prevVisibleOrders + 5);
-        navigate('/vieworders');
-    };
 
     return (
         <div className="container mt-4">
@@ -182,7 +177,7 @@ const ViewOrderDashboard = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {orders.slice(0, visibleOrders).reverse().map((order) => (
+                            {visibleOrders.map((order) => (
                                 <tr key={order.id}>
                                     <td>{order.id}</td>
                                     <td>{order.product}</td>
@@ -195,11 +190,9 @@ const ViewOrderDashboard = () => {
                         </tbody>
                     </Table>
                 </div>
-                {visibleOrders < orders.length && (
-                    <div className="text-center mt-3">
-                        <Button onClick={handleSeeMore}>See More</Button>
-                    </div>
-                )}
+                <div className="text-center mt-3">
+                    <Button onClick={() => navigate('/vieworders')}>See All Orders</Button>
+                </div>
             </div>
         </div>
     );
