@@ -4,7 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'boxicons/css/boxicons.min.css';
 import './Dashboard.css';
 import { Link } from 'react-router-dom';
-import ViewOrders from '../viewOrders/ViewOrders';
+import ViewOrderDashboard from '../viewOrderDashboard/ViewOrderDashboard';
+// import ViewOrders from '../viewOrders/ViewOrders';
+// import ManageUsers from '../manageUsers/ManageUsers'
 
 const DashboardComponent = () => {
   const [showWelcomeText, setShowWelcomeText] = useState(false);
@@ -56,8 +58,11 @@ const DashboardComponent = () => {
             </Link>
           </div>
         </div>
+        {/* <ManageUsers /> */}
       </div>
-      <ViewOrders />
+      {/* <ViewOrders /> */}
+      <ViewOrderDashboard />
+      
     </>
   );
 }
