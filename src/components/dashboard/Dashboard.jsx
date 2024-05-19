@@ -34,7 +34,7 @@ const DashboardComponent = () => {
           <Link to='/manageusers'>
             <div className="card p-3 animate-card">
               <div className="card-body">
-                <span>Manage Users<i className="bx bxs-cart-add cart"></i></span>
+                <span>Manage Customers<i className="bx bxs-cart-add cart"></i></span>
               </div>
             </div>
             </Link>
