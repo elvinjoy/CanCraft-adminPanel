@@ -160,6 +160,10 @@ const ViewOrderDashboard = () => {
     const visibleOrders = orders.slice(-8).reverse();
     const navigate = useNavigate();
 
+    const handleRowClick = (orderId) => {
+        navigate(`/particularorder/${orderId}`);
+    };
+
     return (
         <div className="container mt-4">
             <div style={{ border: '1px solid black', padding: '20px', borderRadius: '5px' }}>
@@ -178,7 +182,7 @@ const ViewOrderDashboard = () => {
                         </thead>
                         <tbody>
                             {visibleOrders.map((order) => (
-                                <tr key={order.id}>
+                                <tr key={order.id} onClick={() => handleRowClick(order.id)} style={{ cursor: 'pointer' }}>
                                     <td>{order.id}</td>
                                     <td>{order.product}</td>
                                     <td>{order.name}</td>

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Table, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ViewOrders = () => {
-    // Dummy data for the table
+    const navigate = useNavigate();
+
     const initialOrders = [
         {
             id: 1,
@@ -102,7 +104,7 @@ const ViewOrders = () => {
             address: '606 Ash St, Hamletville, ST 67890',
             email: 'markrobinson@example.com',
             phone: '777-888-9999',
-            status: 'not dispatched'
+            status: 'dispatched'
         },
         {
             id: 10,
@@ -113,7 +115,7 @@ const ViewOrders = () => {
             address: '707 Fir St, Boroughville, ST 12345',
             email: 'jessicalee@example.com',
             phone: '666-777-8888',
-            status: 'not dispatched'
+            status: 'dispatched'
         },
         {
             id: 11,
@@ -182,13 +184,15 @@ const ViewOrders = () => {
     };
 
     const handleAccept = (orderId) => {
-        // Add your accept logic here
         alert(`Order ${orderId} accepted`);
     };
 
     const handleReject = (orderId) => {
-        // Add your reject logic here
         alert(`Order ${orderId} rejected`);
+    };
+
+    const handleRowClick = (orderId) => {
+        navigate(`/particularorder/${orderId}`);
     };
 
     return (
@@ -212,7 +216,7 @@ const ViewOrders = () => {
                     </thead>
                     <tbody>
                         {orderList.slice().reverse().map((order) => (
-                            <tr key={order.id}>
+                            <tr key={order.id} onClick={() => handleRowClick(order.id)} style={{ cursor: 'pointer' }}>
                                 <td>{order.id}</td>
                                 <td>{order.product}</td>
                                 <td>{order.name}</td>
@@ -221,14 +225,14 @@ const ViewOrders = () => {
                                 <td>{order.email}</td>
                                 <td>{order.phone}</td>
                                 <td>
-                                    <Button variant="success" onClick={() => handleAccept(order.id)}>Dispatched</Button>
+                                    <Button variant="success" onClick={(e) => { e.stopPropagation(); handleAccept(order.id); }}>Dispatched</Button>
                                 </td>
                                 <td>
-                                    <Button variant="danger" onClick={() => handleReject(order.id)}>Not Dispatched</Button>
+                                    <Button variant="danger" onClick={(e) => { e.stopPropagation(); handleReject(order.id); }}>Not Dispatched</Button>
                                 </td>
                                 <td
                                     style={{ cursor: 'pointer', color: order.status === 'dispatched' ? 'green' : 'red' }}
-                                    onClick={() => handleStatusChange(order.id)}
+                                    onClick={(e) => { e.stopPropagation(); handleStatusChange(order.id); }}
                                 >
                                     {order.status}
                                 </td>

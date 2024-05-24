@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Card, Form } from 'react-bootstrap';
+import { Card, Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import prof from '../../assets/cerebro-math.gif';
+import './AddNewSIzeRatio.css';
 
 const AddNewSizeRatio = () => {
     const [sizeRatio, setSizeRatio] = useState('');
@@ -11,29 +11,21 @@ const AddNewSizeRatio = () => {
     };
 
     return (
-        <div className="container mt-4 d-flex justify-content-center">
-            <Card style={{ maxWidth: '600px' }}>
+        <div className="d-flex justify-content-center align-items-center min-vh-100">
+            <Card className="custom-card">
                 <Card.Body>
+                    <Card.Title className="text-center mb-4">Add New Size Ratio</Card.Title>
                     <Form.Group controlId="formSizeRatio">
-                        <Form.Label>Add New Size Ratio</Form.Label>
+                        {/* Removing the Form.Label */}
                         <Form.Control
                             type="text"
                             placeholder="Enter new size ratio"
                             value={sizeRatio}
                             onChange={handleInputChange}
-                            style={{ fontSize: '20px' }}
-                        />
-                        <img 
-                            src={prof} 
-                            alt="img" 
-                            style={{ 
-                                maxWidth: '100%', 
-                                width: '100%', 
-                                height: 'auto', 
-                                paddingTop: '15px' 
-                            }} 
+                            className="custom-input"
                         />
                     </Form.Group>
+                    <Button variant="primary" className="mt-4 w-100">Submit</Button>
                 </Card.Body>
             </Card>
         </div>

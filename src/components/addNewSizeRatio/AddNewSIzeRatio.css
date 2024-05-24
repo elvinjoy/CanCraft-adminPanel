@@ -1,0 +1,54 @@
+/* Center the component vertically and horizontally */
+.min-vh-100 {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f7f7; /* Light background color */
+}
+
+/* Custom Card Styling */
+.custom-card {
+    max-width: 600px;
+    width: 100%;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-image {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.custom-input {
+    font-size: 1rem;
+    padding: 0.75rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 1rem;
+}
+
+.custom-input:focus {
+    box-shadow: none;
+    border-color: #007bff;
+}
+
+button {
+    font-size: 1rem;
+    padding: 0.75rem;
+    border-radius: 5px;
+}
+
+button:focus {
+    box-shadow: none;
+}
+
