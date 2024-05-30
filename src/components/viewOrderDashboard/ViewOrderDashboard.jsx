@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Table, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +13,8 @@ const ViewOrderDashboard = () => {
             amount: '$999',
             address: '123 Main St, Cityville, ST 12345',
             email: 'johndoe@example.com',
-            phone: '123-456-7890'
+            phone: '123-456-7890',
+            status: 'not dispatched'
         },
         {
             id: 2,
@@ -23,7 +24,8 @@ const ViewOrderDashboard = () => {
             amount: '$699',
             address: '456 Oak St, Townsville, ST 67890',
             email: 'janesmith@example.com',
-            phone: '987-654-3210'
+            phone: '987-654-3210',
+            status: 'not dispatched'
         },
         {
             id: 3,
@@ -33,7 +35,8 @@ const ViewOrderDashboard = () => {
             amount: '$199',
             address: '789 Pine St, Villageville, ST 54321',
             email: 'mikejohnson@example.com',
-            phone: '555-123-4567'
+            phone: '555-123-4567',
+            status: 'not dispatched'
         },
         {
             id: 4,
@@ -43,7 +46,8 @@ const ViewOrderDashboard = () => {
             amount: '$299',
             address: '101 Maple St, Hamletville, ST 67890',
             email: 'alicebrown@example.com',
-            phone: '444-555-6666'
+            phone: '444-555-6666',
+            status: 'not dispatched'
         },
         {
             id: 5,
@@ -53,7 +57,8 @@ const ViewOrderDashboard = () => {
             amount: '$499',
             address: '202 Elm St, Boroughville, ST 12345',
             email: 'chriswilson@example.com',
-            phone: '333-444-5555'
+            phone: '333-444-5555',
+            status: 'not dispatched'
         },
         {
             id: 6,
@@ -63,7 +68,8 @@ const ViewOrderDashboard = () => {
             amount: '$599',
             address: '303 Birch St, Cityville, ST 12345',
             email: 'lauram@example.com',
-            phone: '222-333-4444'
+            phone: '222-333-4444',
+            status: 'dispatched'
         },
         {
             id: 7,
@@ -73,7 +79,8 @@ const ViewOrderDashboard = () => {
             amount: '$499',
             address: '404 Cedar St, Townsville, ST 67890',
             email: 'paulwalker@example.com',
-            phone: '111-222-3333'
+            phone: '111-222-3333',
+            status: 'dispatched'
         },
         {
             id: 8,
@@ -83,7 +90,8 @@ const ViewOrderDashboard = () => {
             amount: '$899',
             address: '505 Walnut St, Villageville, ST 54321',
             email: 'annascott@example.com',
-            phone: '888-999-0000'
+            phone: '888-999-0000',
+            status: 'dispatched'
         },
         {
             id: 9,
@@ -93,7 +101,8 @@ const ViewOrderDashboard = () => {
             amount: '$149',
             address: '606 Ash St, Hamletville, ST 67890',
             email: 'markrobinson@example.com',
-            phone: '777-888-9999'
+            phone: '777-888-9999',
+            status: 'dispatched'
         },
         {
             id: 10,
@@ -103,7 +112,8 @@ const ViewOrderDashboard = () => {
             amount: '$99',
             address: '707 Fir St, Boroughville, ST 12345',
             email: 'jessicalee@example.com',
-            phone: '666-777-8888'
+            phone: '666-777-8888',
+            status: 'dispatched'
         },
         {
             id: 11,
@@ -113,7 +123,8 @@ const ViewOrderDashboard = () => {
             amount: '$129',
             address: '808 Spruce St, Cityville, ST 12345',
             email: 'davidking@example.com',
-            phone: '555-666-7777'
+            phone: '555-666-7777',
+            status: 'not dispatched'
         },
         {
             id: 12,
@@ -123,7 +134,8 @@ const ViewOrderDashboard = () => {
             amount: '$499',
             address: '909 Hemlock St, Townsville, ST 67890',
             email: 'emilydavis@example.com',
-            phone: '444-555-6666'
+            phone: '444-555-6666',
+            status: 'not dispatched'
         },
         {
             id: 13,
@@ -133,7 +145,8 @@ const ViewOrderDashboard = () => {
             amount: '$399',
             address: '1010 Cypress St, Villageville, ST 54321',
             email: 'chrisharris@example.com',
-            phone: '333-444-5555'
+            phone: '333-444-5555',
+            status: 'not dispatched'
         },
         {
             id: 14,
@@ -143,7 +156,8 @@ const ViewOrderDashboard = () => {
             amount: '$249',
             address: '1111 Alder St, Hamletville, ST 67890',
             email: 'sarathompson@example.com',
-            phone: '222-333-4444'
+            phone: '222-333-4444',
+            status: 'not dispatched'
         },
         {
             id: 15,
@@ -153,7 +167,8 @@ const ViewOrderDashboard = () => {
             amount: '$59',
             address: '1212 Willow St, Boroughville, ST 12345',
             email: 'ryanwhite@example.com',
-            phone: '111-222-3333'
+            phone: '111-222-3333',
+            status: 'not dispatched'
         }
     ];
 
@@ -178,6 +193,7 @@ const ViewOrderDashboard = () => {
                                 <th>Amount</th>
                                 <th>Email</th>
                                 <th>Ph.No</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -189,6 +205,9 @@ const ViewOrderDashboard = () => {
                                     <td>{order.amount}</td>
                                     <td>{order.email}</td>
                                     <td>{order.phone}</td>
+                                    <td style={{ color: order.status === 'dispatched' ? 'green' : 'red' }}>
+                                        {order.status}
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

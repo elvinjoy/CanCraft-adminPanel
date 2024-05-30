@@ -1,5 +1,4 @@
 import React from 'react';
-import demo from '../../assets/hope this work.gif'
 import demo1 from '../../assets/person.gif'
 
 const Card4 = () => {
@@ -13,9 +12,8 @@ const Card4 = () => {
             backgroundColor: 'black',
             color: 'white'
         }}>
-            <h1>demo page</h1>
+            <h1>For Future Updations</h1>
             <img src={demo1} alt="img" />
-            <img src={demo} alt="img" />
         </div>
     );
 };
