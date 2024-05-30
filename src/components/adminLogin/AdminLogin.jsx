@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { BASE_URL } from '../../constants/constants';
 
 const AdminLogin = () => {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate(); 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         try {
-            const response = await fetch('/api/admin/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ username, password }),
+            const response = await axios.post(`${BASE_URL}/admin/login`, {
+                email,
+                password
             });
-
-            if (response.ok) {
+    
+            if (response.status === 200) {
                 navigate('/dashboard'); 
             } else {
                 console.error('Login failed');
@@ -38,11 +37,11 @@ const AdminLogin = () => {
                 <div className="card-body border border-1 border-dark" style={{ borderRadius: '0 0 10px 10px' }}>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group row mb-4">
-                            <label htmlFor="username" className="col-sm-4 col-form-label" style={{ fontSize: '18px', color: '#495057', textAlign: 'left' }}>
-                                Username
+                            <label htmlFor="email" className="col-sm-4 col-form-label" style={{ fontSize: '18px', color: '#495057', textAlign: 'left' }}>
+                                Email
                             </label>
                             <div className="col-sm-8">
-                                <input type="text" className="form-control" id="username" name="username" value={username} onChange={(e) => setUsername(e.target.value)} required style={{ fontSize: '16px' }} />
+                                <input type="email" className="form-control" id="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} required style={{ fontSize: '16px' }} />
                             </div>
                         </div>
                         <div className="form-group row mb-4">

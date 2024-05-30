@@ -8,13 +8,14 @@ import ViewOrderDashboard from './components/viewOrderDashboard/ViewOrderDashboa
 import ViewOrders from './components/viewOrders/ViewOrders';
 import ParticularOrder from './components/particularOrder/ParticularOrder';
 import AdminLogin from './components/adminLogin/AdminLogin';
+import AdminRegister from './components/adminRegister/AdminRegister';
 
 const App = () => {
     return (
         <Router>
             <Routes>
-                {/* <Route path='/register' element={<Dashboard />} /> */}
-                <Route path='/' element={<AdminLogin />} />
+                <Route path='/' element={<AdminRegister />} />
+                <Route path='/login' element={<AdminLogin />} />
                 <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/vieworderdashboard' element={<ViewOrderDashboard />} />
                 <Route path='/vieworders' element={<ViewOrders />} />
