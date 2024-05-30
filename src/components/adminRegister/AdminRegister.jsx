@@ -5,6 +5,8 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BASE_URL, DEV_URL } from '../../constants/constants';
+import { useNavigate } from 'react-router-dom';
+import { Spinner, Button } from 'react-bootstrap';
 
 const AdminRegister = () => {
     const [formData, setFormData] = useState({
@@ -13,6 +15,8 @@ const AdminRegister = () => {
         password: ''
     });
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate(); 
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -21,15 +25,19 @@ const AdminRegister = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setLoading(true);
         try {
             const response = await axios.post(`${BASE_URL}/admin/register`, formData);
             if (response.status === 200) {
                 toast.success('Registration successful');
+                navigate('/dashboard'); 
             } else {
                 toast.error('Registration failed');
             }
         } catch (error) {
             toast.error(`Error: ${error.response?.data?.error || error.message}`);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -89,7 +97,9 @@ const AdminRegister = () => {
                             </div>
                         </div>
                     </div>
-                    <button type="submit" className="btn btn-primary w-100">Register</button>
+                    <Button type="submit" className="btn btn-primary w-100" disabled={loading}>
+                        {loading ? <Spinner animation="border" size="sm" /> : "Register"}
+                    </Button>
                 </form>
                 <ToastContainer />
             </div>
