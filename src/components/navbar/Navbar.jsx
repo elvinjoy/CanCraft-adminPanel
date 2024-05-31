@@ -48,7 +48,7 @@ const NavbarComponent = () => {
                         <Link to="/manageusers"><li>Manage Users</li></Link>
                         <Link to="/addnewsizeratio"><li>Add New Size Ratio</li></Link>
                         <Link to="/Card4"><li>card 4</li></Link>
-                        <Link to="/"><li>Logout</li></Link>
+                        <Link to="/login"><li>Logout</li></Link>
                     </ul>
                 </div>
             </div>
