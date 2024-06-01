@@ -9,7 +9,7 @@ import ParticularOrder from './components/particularOrder/ParticularOrder';
 import AdminLogin from './components/adminLogin/AdminLogin';
 import AdminRegister from './components/adminRegister/AdminRegister';
 import UserProfile from './components/userProfile/UserProfile';
-import AddManagers from './components/card4/addManagers';
+import AddManagers from './components/addmanagers/AddManagers';
 
 const App = () => {
     return (
