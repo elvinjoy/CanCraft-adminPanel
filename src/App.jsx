@@ -3,12 +3,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './components/dashboard/Dashboard';
 import ManageUsers from './components/manageUsers/ManageUsers';
 import AddNewSizeRatio from './components/addNewSizeRatio/AddNewSizeRatio';
-import Card4 from './components/card4/Card4';
 import ViewOrderDashboard from './components/viewOrderDashboard/ViewOrderDashboard';
 import ViewOrders from './components/viewOrders/ViewOrders';
 import ParticularOrder from './components/particularOrder/ParticularOrder';
 import AdminLogin from './components/adminLogin/AdminLogin';
 import AdminRegister from './components/adminRegister/AdminRegister';
+import UserProfile from './components/userProfile/UserProfile';
+import AddManagers from './components/card4/addManagers';
 
 const App = () => {
     return (
@@ -22,7 +23,9 @@ const App = () => {
                 <Route path='/particularorder/:id' element={<ParticularOrder />} />
                 <Route path='/manageusers' element={<ManageUsers />} />
                 <Route path='/addnewsizeratio' element={<AddNewSizeRatio />} />
-                <Route path='/card4' element={<Card4 />} />
+                <Route path='/addmanagers' element={<AddManagers />} />
+                <Route path="/userprofile/:id" element={<UserProfile /> }/>
+
             </Routes>
         </Router>
     );

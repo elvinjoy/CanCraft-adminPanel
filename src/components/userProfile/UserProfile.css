@@ -1,0 +1,50 @@
+.user-profile-container {
+    background-color: #f8f9fa;
+    padding: 20px;
+    animation: slideIn 1s ease-in-out;
+}
+
+.user-profile {
+    text-align: center;  
+    align-items: center;       
+    margin-bottom: 20px;
+}
+
+.user-details {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-details p {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.status-icon svg {
+    fill: currentColor;
+    margin-left: 5px;
+}
+
+.approved-icon svg {
+    fill: #28a745;
+}
+
+.rejected-icon svg {
+    fill: #dc3545;
+}
+
+
+/* @keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+} */
+
