@@ -29,6 +29,7 @@ const AdminRegister = () => {
         try {
             const response = await axios.post(`http://localhost:3000/api/admin/register`, formData);
             if (response.status === 200) {
+                localStorage.setItem('email', response.data.email);
                 toast.success('Registration successful');
                 navigate('/dashboard'); 
             } else {

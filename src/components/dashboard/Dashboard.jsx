@@ -31,10 +31,10 @@ const DashboardComponent = () => {
             </Link>
           </div>
           <div className="col-md-6 mb-4">
-          <Link to='/manageusers'>
+          <Link to='/addmanagers'>
             <div className="card p-3 animate-card">
               <div className="card-body">
-                <span>Manage Customers<i className="bx bxs-cart-add cart"></i></span>
+                <span>Add Managers<i className="bx bxs-cart-add cart"></i></span>
               </div>
             </div>
             </Link>
@@ -49,10 +49,10 @@ const DashboardComponent = () => {
             </Link>
           </div>
           <div className="col-md-6 mb-4">
-          <Link to='/addmanagers'>
+          <Link to='/manageusers '>
             <div className="card p-3 animate-card">
               <div className="card-body">
-                <span>Add Managers<i className="bx bxs-cart-add cart"></i></span>
+                <span>Manage Managers<i className="bx bxs-cart-add cart"></i></span>
               </div>
             </div>
             </Link>

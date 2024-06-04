@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './components/dashboard/Dashboard';
-import ManageUsers from './components/manageUsers/ManageUsers';
+// import ManageUsers from './components/manageUsers/ManageUsers';
 import AddNewSizeRatio from './components/addNewSizeRatio/AddNewSizeRatio';
 import ViewOrderDashboard from './components/viewOrderDashboard/ViewOrderDashboard';
 import ViewOrders from './components/viewOrders/ViewOrders';
@@ -21,7 +21,7 @@ const App = () => {
                 <Route path='/vieworderdashboard' element={<ViewOrderDashboard />} />
                 <Route path='/vieworders' element={<ViewOrders />} />
                 <Route path='/particularorder/:id' element={<ParticularOrder />} />
-                <Route path='/manageusers' element={<ManageUsers />} />
+                {/* <Route path='/manageusers' element={<ManageUsers />} /> */}
                 <Route path='/addnewsizeratio' element={<AddNewSizeRatio />} />
                 <Route path='/addmanagers' element={<AddManagers />} />
                 <Route path="/userprofile/:id" element={<UserProfile /> }/>

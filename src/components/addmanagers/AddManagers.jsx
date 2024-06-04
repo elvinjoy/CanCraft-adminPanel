@@ -27,7 +27,7 @@ const AddManagers = () => {
         event.preventDefault();
         setLoading(true);
         try {
-            const response = await axios.post(`http://localhost:3000/api/admin/add-manager`, formData);
+            const response = await axios.post(`http://localhost:3000/api/managers/register`, formData);
             if (response.status === 200) {
                 toast.success('Manager added successfully');
                 navigate('/dashboard');

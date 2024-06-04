@@ -4,7 +4,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { BASE_URL, DEV_URL } from '../../constants/constants';
+import { BASE_URL } from '../../constants/constants';
 import { useNavigate } from 'react-router-dom';
 import { Spinner, Button } from 'react-bootstrap';
 
@@ -15,7 +15,7 @@ const AdminLogin = () => {
     });
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -26,10 +26,11 @@ const AdminLogin = () => {
         event.preventDefault();
         setLoading(true);
         try {
-            const response = await axios.post(`${BASE_URL}/admin/login`, formData);
+            const response = await axios.post(`http://localhost:3000/api/admin/login`, formData);
             if (response.status === 200) {
+                localStorage.setItem('email', response.data.email);  // Save email to localStorage
                 toast.success('Login successful');
-                navigate('/dashboard'); 
+                navigate('/dashboard');
             } else {
                 toast.error('Login failed');
             }
