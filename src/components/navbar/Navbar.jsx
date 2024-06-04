@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from '../../assets/cancraft-logo-white.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './navbar.css';
 
 const NavbarComponent = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const navigate = useNavigate(); // useNavigate hook for navigation
 
     const toggleSidebar = () => {
         console.log("Toggling sidebar");
@@ -17,10 +18,15 @@ const NavbarComponent = () => {
         setSidebarOpen(false);
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('email');
+        navigate('/login'); // navigate to login page
+    };
+
     useEffect(() => {
         const handleOutsideClick = (event) => {
             const sidebar = document.querySelector('.sidebar');
-            if (sidebarOpen && !sidebar.contains(event.target)) {
+            if (sidebarOpen && sidebar && !sidebar.contains(event.target)) {
                 setSidebarOpen(false);
             }
         };
@@ -47,8 +53,8 @@ const NavbarComponent = () => {
                         <Link to="/vieworders"><li>View orders</li></Link>
                         <Link to="/manageusers"><li>Manage Users</li></Link>
                         <Link to="/addnewsizeratio"><li>Add New Size Ratio</li></Link>
-                        <Link to="/Card4"><li>card 4</li></Link>
-                        <Link to="/login"><li>Logout</li></Link>
+                        <Link to="/Card4"><li>Card 4</li></Link>
+                        <li onClick={handleLogout} style={{ cursor: 'pointer' }}>Logout</li>
                     </ul>
                 </div>
             </div>
