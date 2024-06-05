@@ -10,6 +10,7 @@ import AdminLogin from './components/adminLogin/AdminLogin';
 import AdminRegister from './components/adminRegister/AdminRegister';
 import UserProfile from './components/userProfile/UserProfile';
 import AddManagers from './components/addmanagers/AddManagers';
+import ManageManagers from './components/manageManagers/ManageManagers';
 
 const App = () => {
     return (
@@ -22,6 +23,7 @@ const App = () => {
                 <Route path='/vieworders' element={<ViewOrders />} />
                 <Route path='/particularorder/:id' element={<ParticularOrder />} />
                 {/* <Route path='/manageusers' element={<ManageUsers />} /> */}
+                <Route path='/managemanagers' element={<ManageManagers />} />
                 <Route path='/addnewsizeratio' element={<AddNewSizeRatio />} />
                 <Route path='/addmanagers' element={<AddManagers />} />
                 <Route path="/userprofile/:id" element={<UserProfile /> }/>

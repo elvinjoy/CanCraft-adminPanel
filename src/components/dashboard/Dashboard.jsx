@@ -49,7 +49,7 @@ const DashboardComponent = () => {
             </Link>
           </div>
           <div className="col-md-6 mb-4">
-          <Link to='/manageusers '>
+          <Link to='/managemanagers'>
             <div className="card p-3 animate-card">
               <div className="card-body">
                 <span>Manage Managers<i className="bx bxs-cart-add cart"></i></span>
