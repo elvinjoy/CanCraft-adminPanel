@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { BASE_URL, DEV_URL } from '../../constants/constants';
 import { useNavigate } from 'react-router-dom';
 import { Spinner, Button } from 'react-bootstrap';
 
@@ -18,6 +17,20 @@ const AddManagers = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const adminData = localStorage.getItem('admin');
+        if (adminData) {
+            const admin = JSON.parse(adminData);
+            if (admin.status !== 'admin') {
+                toast.error('You are not an admin');
+                // navigate('/dashboard'); 
+            }
+        } else {
+            toast.error('You are not an admin');
+            navigate('/login'); // Redirect to login or another appropriate page
+        }
+    }, [navigate]);
+
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
@@ -26,6 +39,22 @@ const AddManagers = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);
+
+        const adminData = localStorage.getItem('admin');
+        if (adminData) {
+            const admin = JSON.parse(adminData);
+            if (admin.status !== 'admin') {
+                toast.error('You are not an admin');
+                setLoading(false);
+                return;
+            }
+        } else {
+            toast.error('You are not an admin');
+            setLoading(false);
+            navigate('/login'); // Redirect to login or another appropriate page
+            return;
+        }
+
         try {
             const response = await axios.post(`http://localhost:3000/api/managers/register`, formData);
             if (response.status === 200) {
