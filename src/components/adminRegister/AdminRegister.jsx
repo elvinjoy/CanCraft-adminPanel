@@ -4,7 +4,6 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import { BASE_URL, DEV_URL } from '../../constants/constants';
 import { useNavigate } from 'react-router-dom';
 import { Spinner, Button } from 'react-bootstrap';
 
@@ -29,7 +28,9 @@ const AdminRegister = () => {
         try {
             const response = await axios.post(`http://localhost:3000/api/admin/register`, formData);
             if (response.status === 200) {
-                localStorage.setItem('email', response.data.email);
+                // Save admin data to localStorage
+                localStorage.setItem('admin', JSON.stringify(response.data.admin));
+                localStorage.setItem('token', response.data.token);
                 toast.success('Registration successful');
                 navigate('/dashboard'); 
             } else {

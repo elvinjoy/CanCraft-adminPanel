@@ -19,9 +19,11 @@ const NavbarComponent = () => {
     };
 
     const handleLogout = () => {
-        localStorage.removeItem('email');
-        navigate('/login'); // navigate to login page
+        localStorage.removeItem('admin');
+        localStorage.removeItem('token'); // Remove the token as well
+        navigate('/login'); // navigate to the login page
     };
+    
 
     useEffect(() => {
         const handleOutsideClick = (event) => {

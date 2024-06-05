@@ -4,7 +4,6 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { BASE_URL } from '../../constants/constants';
 import { useNavigate } from 'react-router-dom';
 import { Spinner, Button } from 'react-bootstrap';
 
@@ -28,7 +27,10 @@ const AdminLogin = () => {
         try {
             const response = await axios.post(`http://localhost:3000/api/admin/login`, formData);
             if (response.status === 200) {
-                localStorage.setItem('email', response.data.email);  // Save email to localStorage
+                const { admin, token } = response.data;
+                // Save admin data and token to localStorage
+                localStorage.setItem('admin', JSON.stringify(admin));
+                localStorage.setItem('token', token);
                 toast.success('Login successful');
                 navigate('/dashboard');
             } else {
