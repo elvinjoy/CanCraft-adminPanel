@@ -3,17 +3,30 @@ import NavbarComponent from '../navbar/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'boxicons/css/boxicons.min.css';
 import './Dashboard.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ViewOrderDashboard from '../viewOrderDashboard/ViewOrderDashboard';
-// import ViewOrders from '../viewOrders/ViewOrders';
-// import ManageUsers from '../manageUsers/ManageUsers'
 
 const DashboardComponent = () => {
   const [showWelcomeText, setShowWelcomeText] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const adminData = localStorage.getItem('admin');
+    const token = localStorage.getItem('token');
+
+    if (!adminData || !token) {
+      navigate('/login');
+      return;
+    }
+
+    const user = JSON.parse(adminData);
+    if (user.status !== 'admin' && user.status !== 'manager') {
+      navigate('/login');
+      return;
+    }
+
     setShowWelcomeText(true);
-  }, []);
+  }, [navigate]);
 
   return (
     <>
@@ -23,38 +36,38 @@ const DashboardComponent = () => {
         <div className="row">
           <div className="col-md-6 mb-4">
             <Link to='/vieworders'>
-            <div className="card p-3 animate-card">
-              <div className="card-body">
-                <span>View Orders<i className='bx bx-cart-alt cart'></i></span>
+              <div className="card p-3 animate-card">
+                <div className="card-body">
+                  <span>View Orders<i className='bx bx-cart-alt cart'></i></span>
+                </div>
               </div>
-            </div>
             </Link>
           </div>
           <div className="col-md-6 mb-4">
-          <Link to='/addmanagers'>
-            <div className="card p-3 animate-card">
-              <div className="card-body">
-                <span>Add Managers<i className="bx bxs-cart-add cart"></i></span>
+            <Link to='/addmanagers'>
+              <div className="card p-3 animate-card">
+                <div className="card-body">
+                  <span>Add Managers<i className="bx bxs-cart-add cart"></i></span>
+                </div>
               </div>
-            </div>
             </Link>
           </div>
           <div className="col-md-6 mb-4">
-          <Link to='/addnewsizeratio'>
-            <div className="card p-3 animate-card">
-              <div className="card-body">
-                <span>Add New Size Ratio<i className='bx bx-cart-alt cart'></i></span>
+            <Link to='/addnewsizeratio'>
+              <div className="card p-3 animate-card">
+                <div className="card-body">
+                  <span>Add New Size Ratio<i className='bx bx-cart-alt cart'></i></span>
+                </div>
               </div>
-            </div>
             </Link>
           </div>
           <div className="col-md-6 mb-4">
-          <Link to='/managemanagers'>
-            <div className="card p-3 animate-card">
-              <div className="card-body">
-                <span>Manage Managers<i className="bx bxs-cart-add cart"></i></span>
+            <Link to='/managemanagers'>
+              <div className="card p-3 animate-card">
+                <div className="card-body">
+                  <span>Manage Managers<i className="bx bxs-cart-add cart"></i></span>
+                </div>
               </div>
-            </div>
             </Link>
           </div>
         </div>
@@ -62,7 +75,6 @@ const DashboardComponent = () => {
       </div>
       {/* <ViewOrders /> */}
       <ViewOrderDashboard />
-      
     </>
   );
 }
