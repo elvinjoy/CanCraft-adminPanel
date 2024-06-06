@@ -41,6 +41,7 @@ const AddManagers = () => {
         setLoading(true);
 
         const adminData = localStorage.getItem('admin');
+        const token = localStorage.getItem('token');
         if (adminData) {
             const admin = JSON.parse(adminData);
             if (admin.status !== 'admin') {
@@ -56,10 +57,18 @@ const AddManagers = () => {
         }
 
         try {
-            const response = await axios.post(`http://localhost:3000/api/managers/register`, formData);
+            const response = await axios.post(
+                `http://localhost:3000/api/managers/register`,
+                formData,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+            );
             if (response.status === 200) {
                 toast.success('Manager added successfully');
-                navigate('/dashboard');
+                // navigate('/dashboard');
             } else {
                 toast.error('Failed to add manager');
             }

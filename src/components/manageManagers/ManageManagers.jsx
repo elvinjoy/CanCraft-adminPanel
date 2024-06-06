@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const ManageManagers = () => {
     const [managers, setManagers] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [isAdmin, setIsAdmin] = useState(true); // New state to track if the user is an admin
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -17,9 +18,8 @@ const ManageManagers = () => {
             if (adminData) {
                 const admin = JSON.parse(adminData);
                 if (admin.status !== 'admin') {
-                    toast.error('You are not an admin');
-                    navigate('/login');
-                    return;
+                    setIsAdmin(false); // Set isAdmin to false if the user is not an admin
+                    toast.error('You are not an admin'); // Show toast message
                 }
             } else {
                 toast.error('You are not an admin');
@@ -28,7 +28,7 @@ const ManageManagers = () => {
             }
 
             try {
-                const token = localStorage.getItem('adminToken');
+                const token = localStorage.getItem('token');
                 const response = await axios.get('http://localhost:3000/api/admin/allmanagers', {
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -62,7 +62,7 @@ const ManageManagers = () => {
             }
 
             try {
-                const token = localStorage.getItem('adminToken');
+                const token = localStorage.getItem('token');
                 await axios.delete(`http://localhost:3000/api/admin/manager/${managerId}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
