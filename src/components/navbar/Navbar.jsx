@@ -53,9 +53,10 @@ const NavbarComponent = () => {
                 <div className="sidebar-content">
                     <ul className="sidebar-menu">
                         <Link to="/vieworders"><li>View orders</li></Link>
-                        <Link to="/manageusers"><li>Manage Users</li></Link>
+                        <Link to="/addmanagers"><li>Add Managers</li></Link>
+                        <Link to="/managemanagers"><li>Manage Managers</li></Link>
                         <Link to="/addnewsizeratio"><li>Add New Size Ratio</li></Link>
-                        <Link to="/Card4"><li>Card 4</li></Link>
+                        <Link to="/Card4"><li>Edit Size Ratios</li></Link>
                         <li onClick={handleLogout} style={{ cursor: 'pointer' }}>Logout</li>
                     </ul>
                 </div>

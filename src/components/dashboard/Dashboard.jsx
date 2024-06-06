@@ -8,6 +8,7 @@ import ViewOrderDashboard from '../viewOrderDashboard/ViewOrderDashboard';
 
 const DashboardComponent = () => {
   const [showWelcomeText, setShowWelcomeText] = useState(false);
+  const [hideWelcomeText, setHideWelcomeText] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,13 +27,18 @@ const DashboardComponent = () => {
     }
 
     setShowWelcomeText(true);
+    const timer = setTimeout(() => {
+      setHideWelcomeText(true);
+    }, 2000); // Hide welcome text after 2 seconds
+
+    return () => clearTimeout(timer); // Cleanup the timer on component unmount
   }, [navigate]);
 
   return (
     <>
       <NavbarComponent />
       <div className="container mt-2">
-        {showWelcomeText && <h4 className="welcome-text">Welcome to Admin Panel</h4>}
+        <h4 className={`welcome-text ${hideWelcomeText ? 'hidden' : ''}`}>Welcome to Admin Panel</h4>
         <div className="row">
           <div className="col-md-6 mb-4">
             <Link to='/vieworders'>
