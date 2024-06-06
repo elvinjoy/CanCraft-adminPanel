@@ -28,7 +28,6 @@ const AdminLogin = () => {
             const response = await axios.post(`http://localhost:3000/api/admin/login`, formData);
             if (response.status === 200) {
                 const { admin, token } = response.data;
-                // Save admin data and token to localStorage
                 localStorage.setItem('admin', JSON.stringify(admin));
                 localStorage.setItem('token', token);
                 toast.success('Login successful');

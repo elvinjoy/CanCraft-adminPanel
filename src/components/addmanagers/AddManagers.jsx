@@ -27,7 +27,7 @@ const AddManagers = () => {
             }
         } else {
             toast.error('You are not an admin');
-            navigate('/dashboard'); // Redirect to login or another appropriate page
+            navigate('/login'); // Redirect to login or another appropriate page
         }
     }, [navigate]);
 

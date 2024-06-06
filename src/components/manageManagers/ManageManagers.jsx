@@ -2,13 +2,31 @@ import React, { useState, useEffect } from 'react';
 import { Table, Button, Spinner } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 const ManageManagers = () => {
     const [managers, setManagers] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchManagers = async () => {
+            const adminData = localStorage.getItem('admin');
+            if (adminData) {
+                const admin = JSON.parse(adminData);
+                if (admin.status !== 'admin') {
+                    toast.error('You are not an admin');
+                    navigate('/login');
+                    return;
+                }
+            } else {
+                toast.error('You are not an admin');
+                navigate('/login');
+                return;
+            }
+
             try {
                 const token = localStorage.getItem('adminToken');
                 const response = await axios.get('http://localhost:3000/api/admin/allmanagers', {
@@ -25,11 +43,24 @@ const ManageManagers = () => {
         };
 
         fetchManagers();
-    }, []);
+    }, [navigate]);
 
     const handleDelete = async (managerId) => {
         const confirmDelete = window.confirm('Are you sure you want to delete this manager?');
         if (confirmDelete) {
+            const adminData = localStorage.getItem('admin');
+            if (adminData) {
+                const admin = JSON.parse(adminData);
+                if (admin.status !== 'admin') {
+                    toast.error('You are not an admin');
+                    return;
+                }
+            } else {
+                toast.error('You are not an admin');
+                navigate('/login');
+                return;
+            }
+
             try {
                 const token = localStorage.getItem('adminToken');
                 await axios.delete(`http://localhost:3000/api/admin/manager/${managerId}`, {
@@ -38,8 +69,10 @@ const ManageManagers = () => {
                     }
                 });
                 setManagers(managers.filter(manager => manager._id !== managerId));
+                toast.success('Manager deleted successfully');
             } catch (error) {
                 console.error('Error deleting manager:', error);
+                toast.error('Failed to delete manager');
             }
         }
     };
@@ -80,6 +113,7 @@ const ManageManagers = () => {
                     </Table>
                 </>
             )}
+            <ToastContainer />
         </div>
     );
 };
