@@ -1,3 +1,5 @@
+/* AddNewSIzeRatio.css */
+
 /* Center the component vertically and horizontally */
 .min-vh-100 {
     min-height: 100vh;
@@ -9,11 +11,12 @@
 
 /* Custom Card Styling */
 .custom-card {
-    max-width: 600px;
-    width: 100%;
+    max-width: 800px; /* Increase the max-width of the card */
+    width: 90%; /* Set the width to 90% */
     border: none;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Add padding to the card */
 }
 
 .card-image {
@@ -25,16 +28,17 @@
 }
 
 .card-title {
-    font-size: 1.5rem;
+    font-size: 2.5rem; /* Increase the font size of the card title */
     font-weight: 700;
+    margin-bottom: 20px; /* Add margin bottom to create space */
 }
 
 .custom-input {
-    font-size: 1rem;
-    padding: 0.75rem;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    margin-bottom: 1rem;
+    font-size: 1.2rem; /* Increase the font size of the input fields */
+    padding: 15px; /* Increase the padding of the input fields */
+    border-radius: 8px; /* Adjust the border radius */
+    border: 2px solid #ddd; /* Increase the border thickness */
+    margin-bottom: 20px; /* Add margin bottom to create space */
 }
 
 .custom-input:focus {
@@ -43,12 +47,20 @@
 }
 
 button {
-    font-size: 1rem;
-    padding: 0.75rem;
-    border-radius: 5px;
+    font-size: 1.2rem !important; /* Increase the font size of the button */
+    padding: 15px; /* Increase the padding of the button */
+    border-radius: 8px; /* Adjust the border radius */
+    background-color: #007bff; /* Change the button background color */
+    color: #fff; /* Change the button text color */
+    border: none; /* Remove button border */
+    cursor: pointer; /* Add pointer cursor */
+    transition: background-color 0.3s ease; /* Add transition effect */
 }
 
 button:focus {
     box-shadow: none;
 }
 
+button:hover {
+    background-color: #0056b3; /* Change the button background color on hover */
+}
