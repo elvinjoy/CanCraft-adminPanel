@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { Spinner, Button } from 'react-bootstrap';
+import BASE_URL from '../../constants/constants';
 
 const AdminLogin = () => {
     const [formData, setFormData] = useState({
@@ -25,7 +26,7 @@ const AdminLogin = () => {
         event.preventDefault();
         setLoading(true);
         try {
-            const response = await axios.post(`http://localhost:3000/api/admin/login`, formData);
+            const response = await axios.post(`${BASE_URL}/api/admin/login`, formData);
             if (response.status === 200) {
                 const { admin, token } = response.data;
                 localStorage.setItem('admin', JSON.stringify(admin));

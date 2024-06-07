@@ -5,6 +5,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import BASE_URL from '../../constants/constants';
 
 const ManageManagers = () => {
     const [managers, setManagers] = useState([]);
@@ -29,7 +30,7 @@ const ManageManagers = () => {
 
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get('http://localhost:3000/api/admin/allmanagers', {
+                const response = await axios.get(`${BASE_URL}/api/admin/allmanagers`, { // Corrected string interpolation
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -63,7 +64,7 @@ const ManageManagers = () => {
 
             try {
                 const token = localStorage.getItem('token');
-                await axios.delete(`http://localhost:3000/api/admin/manager/${managerId}`, {
+                await axios.delete(`${BASE_URL}/api/admin/manager/${managerId}`, { // Corrected string interpolation
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }

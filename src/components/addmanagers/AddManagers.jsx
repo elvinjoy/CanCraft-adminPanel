@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { Spinner, Button } from 'react-bootstrap';
+import BASE_URL from '../../constants/constants';
 
 const AddManagers = () => {
     const [formData, setFormData] = useState({
@@ -58,7 +59,7 @@ const AddManagers = () => {
 
         try {
             const response = await axios.post(
-                `http://localhost:3000/api/managers/register`,
+                `${BASE_URL}/api/managers/register`,
                 formData,
                 {
                     headers: {
