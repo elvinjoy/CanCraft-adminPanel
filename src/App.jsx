@@ -27,6 +27,8 @@ const App = () => {
                 <Route path='/addnewsizeratio' element={<AddNewSizeRatio />} />
                 <Route path='/addmanagers' element={<AddManagers />} />
                 <Route path="/userprofile/:id" element={<UserProfile /> }/>
+                {/* <Route path="editsizeratios" element={<UserProfile /> }/> */}
+                
             </Routes>
         </Router>
     );

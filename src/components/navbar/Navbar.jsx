@@ -10,7 +10,7 @@ const NavbarComponent = () => {
     const navigate = useNavigate(); // useNavigate hook for navigation
 
     const toggleSidebar = () => {
-        console.log("Toggling sidebar");
+        // console.log("Toggling sidebar");
         setSidebarOpen(!sidebarOpen);
     };
 
@@ -24,7 +24,6 @@ const NavbarComponent = () => {
         navigate('/login'); // navigate to the login page
     };
     
-
     useEffect(() => {
         const handleOutsideClick = (event) => {
             const sidebar = document.querySelector('.sidebar');
@@ -56,7 +55,7 @@ const NavbarComponent = () => {
                         <Link to="/addmanagers"><li>Add Managers</li></Link>
                         <Link to="/managemanagers"><li>Manage Managers</li></Link>
                         <Link to="/addnewsizeratio"><li>Add New Size Ratio</li></Link>
-                        <Link to="/Card4"><li>Edit Size Ratios</li></Link>
+                        <Link to="/editsizeratios"><li>Edit Size Ratios</li></Link>
                         <li onClick={handleLogout} style={{ cursor: 'pointer' }}>Logout</li>
                     </ul>
                 </div>
