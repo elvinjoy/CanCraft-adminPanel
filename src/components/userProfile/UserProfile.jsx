@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './UserProfile.css';
+import { BASE_URL } from '../../constants/constants';
+
 
 const UserProfile = () => {
     const { id } = useParams();
@@ -13,7 +15,7 @@ const UserProfile = () => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get(`/admin/user/${id}`);
+                const response = await axios.get(`${BASE_URL}/admin/user/${id}`);
                 setUser(response.data.user);
             } catch (error) {
                 setError(error);

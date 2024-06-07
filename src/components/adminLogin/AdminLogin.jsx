@@ -6,7 +6,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { Spinner, Button } from 'react-bootstrap';
-import BASE_URL from '../../constants/constants';
+import { BASE_URL } from '../../constants/constants';
+
 
 const AdminLogin = () => {
     const [formData, setFormData] = useState({
