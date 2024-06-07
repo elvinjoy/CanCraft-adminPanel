@@ -13,7 +13,7 @@ const UserProfile = () => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get(`http://localhost:3000/api/admin/user/${id}`);
+                const response = await axios.get(`/admin/user/${id}`);
                 setUser(response.data.user);
             } catch (error) {
                 setError(error);

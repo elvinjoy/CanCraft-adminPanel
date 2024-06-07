@@ -27,7 +27,7 @@ const AdminRegister = () => {
         event.preventDefault();
         setLoading(true);
         try {
-            const response = await axios.post(`${BASE_URL}/api/admin/register`, formData);
+            const response = await axios.post(`${BASE_URL}/admin/register`, formData);
             if (response.status === 200) {
                 // Save admin data to localStorage
                 localStorage.setItem('admin', JSON.stringify(response.data.admin));
