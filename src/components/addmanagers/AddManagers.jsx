@@ -28,7 +28,7 @@ const AddManagers = () => {
             }
         } else {
             toast.error('You are not an admin');
-            navigate('/login'); // Redirect to login or another appropriate page
+            navigate('/'); // Redirect to login or another appropriate page
         }
     }, [navigate]);
 
@@ -53,7 +53,7 @@ const AddManagers = () => {
         } else {
             toast.error('You are not an admin');
             setLoading(false);
-            navigate('/dashboard'); // Redirect to login or another appropriate page
+            navigate('/'); // Redirect to login or another appropriate page
             return;
         }
 
