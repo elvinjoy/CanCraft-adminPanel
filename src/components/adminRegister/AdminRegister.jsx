@@ -95,7 +95,7 @@ const AdminRegister = () => {
                                 value={formData.password}
                                 onChange={handleInputChange}
                                 required
-                                style={{ width: '80%' }}
+                                style={{ width: '70%' }}
                             />
                             <div className="input-group-append">
                                 <button type="button" className="btn btn-outline-secondary" onClick={toggleShowPassword}>
