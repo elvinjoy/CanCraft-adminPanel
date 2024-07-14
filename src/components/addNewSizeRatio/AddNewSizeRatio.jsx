@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Form, Button, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './AddNewSIzeRatio.css';
 import { BASE_URL } from '../../constants/constants';
 
 const AddNewSizeRatio = () => {
-    const [buttonSizeRatio, setButtonSizeRatio] = useState('');
-    const [width, setWidth] = useState('');
-    const [height, setHeight] = useState('');
+    const [dimension, setDimension] = useState('');
+    const [portraitWidth, setPortraitWidth] = useState('');
+    const [portraitHeight, setPortraitHeight] = useState('');
+    const [landscapeWidth, setLandscapeWidth] = useState('');
+    const [landscapeHeight, setLandscapeHeight] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -30,6 +30,7 @@ const AddNewSizeRatio = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
         const adminData = localStorage.getItem('admin');
         if (adminData) {
             const admin = JSON.parse(adminData);
@@ -43,78 +44,119 @@ const AddNewSizeRatio = () => {
             return;
         }
 
-        if (buttonSizeRatio && width && height) {
-            const newButtonSizeRatio = { buttonSizeRatio, width, height };
-            setLoading(true);
-            try {
-                const response = await fetch(`${BASE_URL}/admin/addratios`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
+        const newData = {
+            dimensions: {
+            
+                    portrait: {
+                        width: { $numberInt: parseInt(portraitWidth, 10).toString() },
+                        height: { $numberInt: parseInt(portraitHeight, 10).toString() }
                     },
-                    body: JSON.stringify(newButtonSizeRatio),
-                });
-
-                if (!response.ok) {
-                    throw new Error('Failed to add button size ratio');
-                }
-
-                const data = await response.json();
-                console.log('Button size ratio added successfully:', data);
-                toast.success('Button size ratio added successfully.');
-                setButtonSizeRatio('');
-                setWidth('');
-                setHeight('');
-            } catch (error) {
-                console.error('Error:', error);
-                toast.error('Failed to add button size ratio');
-            } finally {
-                setLoading(false);
+                    landscape: {
+                        width: { $numberInt: parseInt(landscapeWidth, 10).toString() },
+                        height: { $numberInt: parseInt(landscapeHeight, 10).toString() }
+                    }
+                
             }
-        } else {
-            toast.error('Please fill in all fields');
+        };
+
+        // Console log the newData before sending
+        console.log('Data to be sent:', newData);
+
+        setLoading(true);
+        try {
+            const response = await fetch(`${BASE_URL}/dimensions/dimensions`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newData),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Failed to add size ratio');
+            }
+
+            toast.success('Size ratio added successfully.');
+            setDimension('');
+            setPortraitWidth('');
+            setPortraitHeight('');
+            setLandscapeWidth('');
+            setLandscapeHeight('');
+        } catch (error) {
+            console.error('Error:', error);
+            toast.error('Failed to add size ratio');
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
-        <div className="d-flex justify-content-center align-items-center min-vh-100">
-            <Card className="custom-card">
-                <Card.Body>
-                    <Card.Title className="text-center mb-4">Add New Button Size Ratio</Card.Title>
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group controlId="formButtonSizeRatio">
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter new button size ratio"
-                                value={buttonSizeRatio}
-                                onChange={(e) => setButtonSizeRatio(e.target.value)}
-                                className="custom-input"
-                            />
-                        </Form.Group>
-                        <Form.Group controlId="formWidth" className="mt-3">
-                            <Form.Control
-                                type="number"
-                                placeholder="Enter the width of the button"
-                                value={width}
-                                onChange={(e) => setWidth(e.target.value)}
-                                className="custom-input"
-                            />
-                        </Form.Group>
-                        <Form.Group controlId="formHeight" className="mt-3">
-                            <Form.Control
-                                type="number"
-                                placeholder="Enter the height of the button"
-                                value={height}
-                                onChange={(e) => setHeight(e.target.value)}
-                                className="custom-input"
-                            />
-                        </Form.Group>
-                        <Button variant="primary" type="submit" className="mt-4 w-100" disabled={loading}>
-                            {loading ? <Spinner animation="border" size="sm" /> : 'Submit'}
-                        </Button>
-                    </Form>
-                </Card.Body>
-            </Card>
+        <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+            <div className="card shadow p-4 w-50">
+                <h3 className="card-title text-center mb-4">Add New Size Ratio</h3>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                        <label htmlFor="dimension" className="form-label">Dimension (e.g., 120x180 cm)</label>
+                        <input 
+                            type="text" 
+                            className="form-control" 
+                            id="dimension" 
+                            value={dimension} 
+                            onChange={(e) => setDimension(e.target.value)} 
+                            required 
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="portraitWidth" className="form-label">Portrait Width</label>
+                        <input 
+                            type="number" 
+                            className="form-control" 
+                            id="portraitWidth" 
+                            value={portraitWidth} 
+                            onChange={(e) => setPortraitWidth(e.target.value)} 
+                            required 
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="portraitHeight" className="form-label">Portrait Height</label>
+                        <input 
+                            type="number" 
+                            className="form-control" 
+                            id="portraitHeight" 
+                            value={portraitHeight} 
+                            onChange={(e) => setPortraitHeight(e.target.value)} 
+                            required 
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="landscapeWidth" className="form-label">Landscape Width</label>
+                        <input 
+                            type="number" 
+                            className="form-control" 
+                            id="landscapeWidth" 
+                            value={landscapeWidth} 
+                            onChange={(e) => setLandscapeWidth(e.target.value)} 
+                            required 
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="landscapeHeight" className="form-label">Landscape Height</label>
+                        <input 
+                            type="number" 
+                            className="form-control" 
+                            id="landscapeHeight" 
+                            value={landscapeHeight} 
+                            onChange={(e) => setLandscapeHeight(e.target.value)} 
+                            required 
+                        />
+                    </div>
+                    <button type="submit" className="btn btn-primary w-100" disabled={loading}>
+                        {loading ? 'Loading...' : 'Submit'}
+                    </button>
+                </form>
+            </div>
             <ToastContainer />
         </div>
     );

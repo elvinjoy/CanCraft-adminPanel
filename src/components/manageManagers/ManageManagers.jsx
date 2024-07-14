@@ -31,7 +31,7 @@ const ManageManagers = () => {
 
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get(`${BASE_URL}/api/admin/allmanagers`, { // Corrected string interpolation
+                const response = await axios.get(`${BASE_URL}/admin/allmanagers`, { // Corrected string interpolation
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -65,7 +65,7 @@ const ManageManagers = () => {
 
             try {
                 const token = localStorage.getItem('token');
-                await axios.delete(`${BASE_URL}/api/admin/manager/${managerId}`, { // Corrected string interpolation
+                await axios.delete(`${BASE_URL}/admin/manager/${managerId}`, { // Corrected string interpolation
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }

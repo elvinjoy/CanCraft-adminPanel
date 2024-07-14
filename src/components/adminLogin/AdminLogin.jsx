@@ -27,7 +27,7 @@ const AdminLogin = () => {
         event.preventDefault();
         setLoading(true);
         try {
-            const response = await axios.post(`${BASE_URL}/api/admin/login`, formData);
+            const response = await axios.post(`${BASE_URL}/admin/login`, formData);
             if (response.status === 200) {
                 const { admin, token } = response.data;
                 localStorage.setItem('admin', JSON.stringify(admin));

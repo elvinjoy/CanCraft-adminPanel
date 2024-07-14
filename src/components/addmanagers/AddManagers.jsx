@@ -59,7 +59,7 @@ const AddManagers = () => {
 
         try {
             const response = await axios.post(
-                `${BASE_URL}/api/managers/register`,
+                `${BASE_URL}/managers/register`,
                 formData,
                 {
                     headers: {

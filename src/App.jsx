@@ -9,12 +9,14 @@ import AdminLogin from './components/adminLogin/AdminLogin';
 import UserProfile from './components/userProfile/UserProfile';
 import AddManagers from './components/addmanagers/AddManagers';
 import ManageManagers from './components/manageManagers/ManageManagers';
-
+import AdminRegister from './components/adminRegister/AdminRegister';
+import AllSizeRatios from './components/allRatios/AllRatios';
 const App = () => {
     return (
         <Router>
             <Routes>
-                <Route path='/' element={<AdminLogin />} />
+                <Route path='/register' element={<AdminRegister />} />
+                <Route path='/login' element={<AdminLogin />} />
                 <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/vieworderdashboard' element={<ViewOrderDashboard />} />
                 <Route path='/vieworders' element={<ViewOrders />} />
@@ -23,6 +25,7 @@ const App = () => {
                 <Route path='/addnewsizeratio' element={<AddNewSizeRatio />} />
                 <Route path='/addmanagers' element={<AddManagers />} />
                 <Route path='/userprofile/:id' element={<UserProfile />} />
+                <Route path='/allratios' element={<AllSizeRatios />} />
             </Routes>
         </Router>
     );
