@@ -20,15 +20,19 @@ const AddManagers = () => {
 
     useEffect(() => {
         const adminData = localStorage.getItem('admin');
-        if (adminData) {
-            const admin = JSON.parse(adminData);
-            if (admin.status !== 'admin') {
-                toast.error('You are not an admin');
-                // navigate('/dashboard'); 
-            }
-        } else {
-            toast.error('You are not an admin');
-            navigate('/'); // Redirect to login or another appropriate page
+        const token = localStorage.getItem('token');
+
+        if (!adminData || !token) {
+            // toast.error('You are not authorized');
+            navigate('/managerlogin');
+            return;
+        }
+
+        const admin = JSON.parse(adminData);
+        if (admin.status !== 'admin') {
+            toast.error('You are not authorized');
+            // navigate('/managerlogin');
+            return;
         }
     }, [navigate]);
 

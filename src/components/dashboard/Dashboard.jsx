@@ -16,13 +16,13 @@ const DashboardComponent = () => {
     const token = localStorage.getItem('token');
 
     if (!adminData || !token) {
-      navigate('/login');
+      navigate('/managerlogin');
       return;
     }
 
     const user = JSON.parse(adminData);
     if (user.status !== 'admin' && user.status !== 'manager') {
-      navigate('/login');
+      navigate('/managerlogin');
       return;
     }
 
