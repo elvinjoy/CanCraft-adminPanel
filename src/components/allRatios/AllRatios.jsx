@@ -61,24 +61,29 @@ const AllSizeRatios = () => {
                 </thead>
                 <tbody>
                     {allDimensions.length > 0 ? (
-                        allDimensions.map((dimension, index) => (
-                            <tr key={dimension._id}>
-                                <td>{dimension._id}</td>
-                                <td>{Object.keys(dimension.dimensions)[0]}</td>
-                                <td>{dimension.dimensions.portrait.width}</td>
-                                <td>{dimension.dimensions.portrait.height}</td>
-                                <td>{dimension.dimensions.landscape.width}</td>
-                                <td>{dimension.dimensions.landscape.height}</td>
-                                <td>
-                                    <button
-                                        className="btn btn-danger"
-                                        onClick={() => handleDelete(dimension._id)}
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        ))
+                        allDimensions.map((dimension) => {
+                            const dimensionKey = Object.keys(dimension.dimensions)[0];
+                            const { portrait, landscape } = dimension.dimensions[dimensionKey];
+
+                            return (
+                                <tr key={dimension._id}>
+                                    <td>{dimension._id}</td>
+                                    <td>{dimensionKey}</td>
+                                    <td>{portrait.width}</td>
+                                    <td>{portrait.height}</td>
+                                    <td>{landscape.width}</td>
+                                    <td>{landscape.height}</td>
+                                    <td>
+                                        <button
+                                            className="btn btn-danger"
+                                            onClick={() => handleDelete(dimension._id)}
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            );
+                        })
                     ) : (
                         <tr>
                             <td colSpan="7" className="text-center">No dimensions available</td>
