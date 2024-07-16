@@ -54,7 +54,7 @@ const ManageManagers = () => {
             if (adminData) {
                 const admin = JSON.parse(adminData);
                 if (admin.status !== 'admin') {
-                    toast.error('You are not an admin');
+                    toast.error('You dont have permission to delete manager');
                     return;
                 }
             } else {
