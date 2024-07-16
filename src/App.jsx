@@ -6,17 +6,19 @@ import ViewOrderDashboard from './components/viewOrderDashboard/ViewOrderDashboa
 import ViewOrders from './components/viewOrders/ViewOrders';
 import ParticularOrder from './components/particularOrder/ParticularOrder';
 import AdminLogin from './components/adminLogin/AdminLogin';
+import ManagerLogin from './components/managerLogin/ManagerLogin';
 import UserProfile from './components/userProfile/UserProfile';
 import AddManagers from './components/addmanagers/AddManagers';
 import ManageManagers from './components/manageManagers/ManageManagers';
 import AdminRegister from './components/adminRegister/AdminRegister';
 import AllSizeRatios from './components/allRatios/AllRatios';
 const App = () => {
-    return (
+    return (    
         <Router>
             <Routes>
                 <Route path='/register' element={<AdminRegister />} />
                 <Route path='/login' element={<AdminLogin />} />
+                <Route path='/managerlogin' element={<ManagerLogin />} />
                 <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/vieworderdashboard' element={<ViewOrderDashboard />} />
                 <Route path='/vieworders' element={<ViewOrders />} />
