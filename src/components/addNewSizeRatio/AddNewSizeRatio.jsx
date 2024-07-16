@@ -45,18 +45,16 @@ const AddNewSizeRatio = () => {
         }
 
         const newData = {
-            dimensions: {
-            
-                    portrait: {
-                        width: { $numberInt: parseInt(portraitWidth, 10).toString() },
-                        height: { $numberInt: parseInt(portraitHeight, 10).toString() }
-                    },
-                    landscape: {
-                        width: { $numberInt: parseInt(landscapeWidth, 10).toString() },
-                        height: { $numberInt: parseInt(landscapeHeight, 10).toString() }
-                    }
-                
-            }
+            [dimension]: {
+                portrait: {
+                    width: parseInt(portraitWidth, 10),
+                    height: parseInt(portraitHeight, 10),
+                },
+                landscape: {
+                    width: parseInt(landscapeWidth, 10),
+                    height: parseInt(landscapeHeight, 10),
+                },
+            },
         };
 
         // Console log the newData before sending
