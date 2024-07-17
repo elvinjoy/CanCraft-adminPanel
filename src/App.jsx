@@ -20,7 +20,7 @@ const App = () => {
                 <Route path='/login' element={<AdminLogin />} />
                 <Route path='/' element={<ManagerLogin />} />
                 <Route path='/dashboard' element={<Dashboard />} />
-                <Route path='/vieworderdashboard' element={<ViewOrderDashboard />} />
+                {/* <Route path='/vieworderdashboard' element={<ViewOrderDashboard />} /> */}
                 <Route path='/vieworders' element={<ViewOrders />} />
                 <Route path='/particularorder/:id' element={<ParticularOrder />} />
                 <Route path='/managemanagers' element={<ManageManagers />} />
