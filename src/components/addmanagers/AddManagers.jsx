@@ -24,14 +24,14 @@ const AddManagers = () => {
 
         if (!adminData || !token) {
             // toast.error('You are not authorized');
-            navigate('/managerlogin');
+            navigate('/');
             return;
         }
 
         const admin = JSON.parse(adminData);
         if (admin.status !== 'admin') {
             toast.error('You are not authorized');
-            // navigate('/managerlogin');
+            // navigate('/');
             return;
         }
     }, [navigate]);

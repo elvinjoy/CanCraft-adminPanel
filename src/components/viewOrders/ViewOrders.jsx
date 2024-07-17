@@ -28,13 +28,13 @@ const ViewOrders = () => {
         const token = localStorage.getItem('token');
 
         if (!adminData || !token) {
-            navigate('/managerlogin');
+            navigate('/');
             return;
         }
 
         const user = JSON.parse(adminData);
         if (user.status !== 'admin' && user.status !== 'manager') {
-            navigate('/managerlogin');
+            navigate('/');
             return;
         }
     }, [navigate]);

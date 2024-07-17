@@ -18,7 +18,7 @@ const AllSizeRatios = () => {
             const token = localStorage.getItem('token');
 
             if (!adminData || !token) {
-                navigate('/managerlogin');
+                navigate('/');
                 return;
             }
 

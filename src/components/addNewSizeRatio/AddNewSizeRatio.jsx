@@ -18,7 +18,7 @@ const AddNewSizeRatio = () => {
         const adminData = localStorage.getItem('admin');
         const token = localStorage.getItem('token');
         if (!adminData || !token) {
-            navigate('/login');
+            navigate('/');
             return;
         }
 
