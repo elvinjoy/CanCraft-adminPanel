@@ -29,7 +29,7 @@ const ManageManagers = () => {
                     }
                 });
 
-                console.log('Response data:', response.data);
+                // console.log('Response data:', response.data);
 
                 if (response.data && response.data.managers) {
                     setManagers(response.data.managers);
