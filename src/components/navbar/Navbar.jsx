@@ -21,7 +21,7 @@ const NavbarComponent = () => {
     const handleLogout = () => {
         localStorage.removeItem('admin');
         localStorage.removeItem('token'); // Remove the token as well
-        navigate('/login'); // navigate to the login page
+        navigate('/'); // navigate to the login page
     };
     
     useEffect(() => {
