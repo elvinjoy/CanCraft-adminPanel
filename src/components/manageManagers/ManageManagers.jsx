@@ -7,39 +7,40 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from '../../constants/constants';
 
-
 const ManageManagers = () => {
     const [managers, setManagers] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [isAdmin, setIsAdmin] = useState(true); // New state to track if the user is an admin
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchManagers = async () => {
             const adminData = localStorage.getItem('admin');
-            if (adminData) {
-                const admin = JSON.parse(adminData);
-                if (admin.status !== 'admin') {
-                    setIsAdmin(false); // Set isAdmin to false if the user is not an admin
-                    toast.error('You are not an admin'); // Show toast message
-                }
-            } else {
-                toast.error('You are not an admin');
-                navigate('/login');
+            const token = localStorage.getItem('token');
+
+            if (!adminData || !token) {
+                navigate('/managerlogin');
                 return;
             }
 
             try {
-                const token = localStorage.getItem('token');
-                const response = await axios.get(`${BASE_URL}/admin/allmanagers`, { // Corrected string interpolation
+                const response = await axios.get(`${BASE_URL}/admin/allmanagers`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
                 });
-                setManagers(response.data.managers);
+
+                console.log('Response data:', response.data);
+
+                if (response.data && response.data.managers) {
+                    setManagers(response.data.managers);
+                } else {
+                    toast.error('Failed to load managers data');
+                }
+
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching managers:', error);
+                toast.error('Error fetching managers');
                 setLoading(false);
             }
         };
@@ -54,7 +55,7 @@ const ManageManagers = () => {
             if (adminData) {
                 const admin = JSON.parse(adminData);
                 if (admin.status !== 'admin') {
-                    toast.error('You dont have permission to delete manager');
+                    toast.error('You don\'t have permission to delete manager');
                     return;
                 }
             } else {
@@ -65,7 +66,7 @@ const ManageManagers = () => {
 
             try {
                 const token = localStorage.getItem('token');
-                await axios.delete(`${BASE_URL}/admin/manager/${managerId}`, { // Corrected string interpolation
+                await axios.delete(`${BASE_URL}/admin/manager/${managerId}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
