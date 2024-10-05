@@ -1,7 +1,38 @@
+/* Ensures the order-table has a white background */
 .order-table {
-    background-color: #f8f9fa; /* Set your desired table color */
+    background-color: #ffffff !important; /* Set table background to white */
+    border-collapse: collapse; /* Ensure borders do not double */
 }
 
+/* Ensures all table headers have a white background */
+.order-table th {
+    background-color: #ffffff !important; /* Header background */
+    color: #000; /* Text color for headers, adjust as needed */
+}
+
+/* Ensures all table cells have a white background */
+.order-table td {
+    background-color: #ffffff !important; /* Cell background */
+    color: #000; /* Text color for cells, adjust as needed */
+}
+
+/* Change hover color for rows */
 .order-table tbody tr:hover {
-    background-color: #d1ecf1; /* Change this to your desired hover color */
+    background-color: #d1ecf1 !important; /* Light blue for hover */
+}
+
+/* Status styles */
+.status-paid {
+    color: #28a745 !important; /* Bright green for paid */
+    font-weight: bold;
+}
+
+.status-failed {
+    color: #dc3545 !important; /* Bright red for failed */
+    font-weight: bold;
+}
+
+.status-pending {
+    color: #ffc107 !important; /* Bright yellow for pending */
+    font-weight: bold;
 }

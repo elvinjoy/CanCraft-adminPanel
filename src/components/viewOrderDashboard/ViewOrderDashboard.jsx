@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
-import './ViewOrderDashboard.css'; // Import the CSS file
+import './ViewOrderDashboard.css'; // Import the updated CSS file
 
 const ViewOrderDashboard = () => {
     const [orders, setOrders] = useState([]);
@@ -16,19 +16,20 @@ const ViewOrderDashboard = () => {
                 'Authorization': `Bearer ${token}`
             }
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            const visibleOrders = data.slice(-3); // Show only last 3 orders
-            setOrders(visibleOrders);
-        })
-        .catch(error => {
-            console.error('Error fetching order data:', error);
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const paidOrders = data.filter(order => order.paymentStatus === 1);
+                const visibleOrders = paidOrders.slice(-3);
+                setOrders(visibleOrders);
+            })
+            .catch(error => {
+                console.error('Error fetching order data:', error);
+            });
     }, []);
 
     const handleRowClick = (orderId) => {
@@ -37,14 +38,19 @@ const ViewOrderDashboard = () => {
 
     const getPaymentStatus = (status) => {
         switch (status) {
-            case 0:
-                return 'Pending';
-            case 1:
-                return 'Paid';
-            case 2:
-                return 'Failed';
-            default:
-                return 'Unknown';
+            case 0: return 'Pending';
+            case 1: return 'Paid';
+            case 2: return 'Failed';
+            default: return 'Unknown';
+        }
+    };
+
+    const getPaymentStatusClass = (status) => {
+        switch (status) {
+            case 1: return 'status-paid';
+            case 2: return 'status-failed';
+            case 0: return 'status-pending';
+            default: return '';
         }
     };
 
@@ -53,10 +59,17 @@ const ViewOrderDashboard = () => {
             <div style={{ border: '1px solid black', padding: '20px', borderRadius: '5px' }}>
                 <h4 className="text-center">View Orders</h4>
                 <div className="table-responsive">
-                    <Table striped bordered hover className="order-table">
+                    <Table
+                        striped
+                        bordered
+                        hover
+                        className="order-table"
+                        style={{ borderCollapse: 'collapse' }} // Removed backgroundColor since it is now in CSS
+                    >
                         <thead>
                             <tr>
                                 <th style={{ width: '5%' }}>#</th>
+                                <th style={{ width: '15%' }}>Order ID</th> {/* New column for Order ID */}
                                 <th style={{ width: '15%' }}>Dimension</th>
                                 <th style={{ width: '15%' }}>Frame Color</th>
                                 <th style={{ width: '20%' }}>Original Image</th>
@@ -75,6 +88,7 @@ const ViewOrderDashboard = () => {
                                                 {orders.length - orderIndex} {/* Display sequential number */}
                                             </td>
                                         )}
+                                        <td>{order._id}</td> {/* Display Order ID */}
                                         <td>{item.dimension}</td>
                                         <td>{item.frameColor}</td>
                                         <td>
@@ -86,7 +100,9 @@ const ViewOrderDashboard = () => {
                                         {index === 0 && (
                                             <>
                                                 <td rowSpan={order.itemlist.length}>${order.totalPrice}</td>
-                                                <td rowSpan={order.itemlist.length}>{getPaymentStatus(order.paymentStatus)}</td>
+                                                <td rowSpan={order.itemlist.length} className={getPaymentStatusClass(order.paymentStatus)}>
+                                                    {getPaymentStatus(order.paymentStatus)}
+                                                </td>
                                                 <td rowSpan={order.itemlist.length}>{new Date(order.createdAt).toLocaleString()}</td>
                                             </>
                                         )}

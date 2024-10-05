@@ -75,7 +75,6 @@ const OrderDetails = () => {
         }
     };
 
-
     if (orders.length === 0) {
         return <div>Loading...</div>;
     }
@@ -88,6 +87,7 @@ const OrderDetails = () => {
                 <thead>
                     <tr>
                         <th>#</th> {/* Sequential order number */}
+                        <th>Order ID</th> {/* New column for Order ID */}
                         <th>Dimension</th>
                         <th>Frame Color</th>
                         <th>Original Image</th>
@@ -107,6 +107,7 @@ const OrderDetails = () => {
                                         {orders.length - orderIndex} {/* Display sequential number in reverse order */}
                                     </td>
                                 )}
+                                <td>{order._id}</td> {/* Display Order ID */}
                                 <td>{item.dimension}</td>
                                 <td>{item.frameColor}</td>
                                 <td>
