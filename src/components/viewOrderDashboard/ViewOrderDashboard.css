@@ -1,0 +1,7 @@
+.order-table {
+    background-color: #f8f9fa; /* Set your desired table color */
+}
+
+.order-table tbody tr:hover {
+    background-color: #d1ecf1; /* Change this to your desired hover color */
+}

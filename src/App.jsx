@@ -12,6 +12,7 @@ import AddManagers from './components/addmanagers/AddManagers';
 import ManageManagers from './components/manageManagers/ManageManagers';
 import AdminRegister from './components/adminRegister/AdminRegister';
 import AllSizeRatios from './components/allRatios/AllRatios';
+import CreatePrice from './components/createPrice/CreatePrice';
 const App = () => {
     return (    
         <Router>
@@ -28,6 +29,7 @@ const App = () => {
                 <Route path='/addmanagers' element={<AddManagers />} />
                 <Route path='/userprofile/:id' element={<UserProfile />} />
                 <Route path='/allratios' element={<AllSizeRatios />} />
+                <Route path='/createprice' element={<CreatePrice />} />
             </Routes>
         </Router>
     );

@@ -56,6 +56,7 @@ const NavbarComponent = () => {
                         <Link to="/managemanagers"><li>Manage Managers</li></Link>
                         <Link to="/addnewsizeratio"><li>Add New Size Ratio</li></Link>
                         <Link to="/allratios"><li>Edit Size Ratios</li></Link>
+                        <Link to="/createprice"><li>Create price</li></Link>
                         <li onClick={handleLogout} style={{ cursor: 'pointer' }}>Logout</li>
                     </ul>
                 </div>

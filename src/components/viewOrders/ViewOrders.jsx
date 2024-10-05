@@ -1,111 +1,96 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './ViewOrders.css'; // Make sure to import your CSS file
 
-const ViewOrders = () => {
-    const navigate = useNavigate();
-
-    const initialOrders = [
-        {
-            id: 1,
-            product: 'Laptop',
-            name: 'John Doe',
-            date: '2024-05-01',
-            amount: '$999',
-            address: '123 Main St, Cityville, ST 12345',
-            email: 'johndoe@example.com',
-            phone: '123-456-7890',
-            status: 'not dispatched'
-        },
-        // other orders...
-    ];
-
-    const [orderList, setOrderList] = useState(initialOrders);
+const OrderDetails = () => {
+    const [orders, setOrders] = useState([]); // Use an array to hold multiple orders
 
     useEffect(() => {
-        const adminData = localStorage.getItem('admin');
         const token = localStorage.getItem('token');
-
-        if (!adminData || !token) {
-            navigate('/');
-            return;
-        }
-
-        const user = JSON.parse(adminData);
-        if (user.status !== 'admin' && user.status !== 'manager') {
-            navigate('/');
-            return;
-        }
-    }, [navigate]);
-
-    const handleStatusChange = (orderId) => {
-        const updatedOrders = orderList.map(order =>
-            order.id === orderId ? { ...order, status: order.status === 'not dispatched' ? 'dispatched' : 'not dispatched' } : order
-        );
-        setOrderList(updatedOrders);
+    
+        fetch('https://cancraft-admin-panel-backend-6smr.onrender.com/api/order/getAllOrders', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((data) => {
+            setOrders(data.reverse()); // Reverse the order of fetched data
+        })
+        .catch((error) => {
+            console.error('Error fetching order data:', error);
+        });
+    }, []);
+    
+    // Format ISO timestamp to a readable date
+    const formatDate = (timestamp) => {
+        if (!timestamp) return "N/A";
+        const date = new Date(timestamp);
+        return date.toLocaleDateString() + " " + date.toLocaleTimeString();
     };
 
-    const handleAccept = (orderId) => {
-        alert(`Order ${orderId} accepted`);
-    };
-
-    const handleReject = (orderId) => {
-        alert(`Order ${orderId} rejected`);
-    };
-
-    const handleRowClick = (orderId) => {
-        navigate(`/particularorder/${orderId}`);
-    };
+    if (orders.length === 0) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div className="container mt-4">
-            <h1 className="text-center">All Orders</h1>
-            <div className="table-responsive">
-                <Table striped bordered hover>
-                    <thead>
-                        <tr>
-                            <th>si.no</th>
-                            <th>Product</th>
-                            <th>Name</th>
-                            <th>Amount</th>
-                            <th>Address</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Accept</th>
-                            <th>Reject</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {orderList.slice().reverse().map((order) => (
-                            <tr key={order.id} onClick={() => handleRowClick(order.id)} style={{ cursor: 'pointer' }}>
-                                <td>{order.id}</td>
-                                <td>{order.product}</td>
-                                <td>{order.name}</td>
-                                <td>{order.amount}</td>
-                                <td>{order.address}</td>
-                                <td>{order.email}</td>
-                                <td>{order.phone}</td>
+            <h1 className="text-center">Order Details</h1>
+
+            <Table className="uniform-table" bordered hover>
+                <thead>
+                    <tr>
+                        <th>#</th> {/* Sequential order number */}
+                        <th>Dimension</th>
+                        <th>Frame Color</th>
+                        <th>Original Image</th>
+                        <th>Cropped Image</th>
+                        <th>Price</th>
+                        <th>Total Price</th>
+                        <th>Payment Status</th>
+                        <th>Order Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {orders.map((order, orderIndex) => (
+                        order.itemlist.map((item, index) => (
+                            <tr key={item._id}>
+                                {index === 0 && (
+                                    <td rowSpan={order.itemlist.length}>
+                                        {orders.length - orderIndex} {/* Display sequential number in reverse order */}
+                                    </td>
+                                )}
+                                <td>{item.dimension}</td>
+                                <td>{item.frameColor}</td>
                                 <td>
-                                    <Button variant="success" onClick={(e) => { e.stopPropagation(); handleAccept(order.id); }}>Dispatched</Button>
+                                    <img src={item.orginalImage} alt="Original" width={100} height={100} />
                                 </td>
                                 <td>
-                                    <Button variant="danger" onClick={(e) => { e.stopPropagation(); handleReject(order.id); }}>Not Dispatched</Button>
+                                    <img src={item.cropedImage} alt="Cropped" width={100} height={100} />
                                 </td>
-                                <td
-                                    style={{ cursor: 'pointer', color: order.status === 'dispatched' ? 'green' : 'red' }}
-                                    onClick={(e) => { e.stopPropagation(); handleStatusChange(order.id); }}
-                                >
-                                    {order.status}
-                                </td>
+                                <td>${item.price}</td>
+                                {index === 0 && (
+                                    <>
+                                        <td rowSpan={order.itemlist.length}>${order.totalPrice}</td>
+                                        <td rowSpan={order.itemlist.length}>
+                                            {order.paymentStatus === 0 ? 'Pending' : order.paymentStatus === 1 ? 'In Progress' : 'Completed'}
+                                        </td>
+                                        <td rowSpan={order.itemlist.length}>{formatDate(order.createdAt)}</td>
+                                    </>
+                                )}
                             </tr>
-                        ))}
-                    </tbody>
-                </Table>
-            </div>
+                        ))
+                    ))}
+                </tbody>
+            </Table>
         </div>
     );
 };
 
-export default ViewOrders;
+export default OrderDetails;

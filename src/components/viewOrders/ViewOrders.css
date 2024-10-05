@@ -1,0 +1,38 @@
+/* Table background should remain white */
+.uniform-table {
+    background-color: #ffffff; /* Set table background to white */
+}
+
+/* Ensure all rows have a consistent white background */
+.uniform-table tbody tr {
+    background-color: #ffffff; /* Rows should be white */
+}
+
+/* Change row background color on hover */
+.uniform-table tbody tr:hover {
+    background-color: #e9ecef !important; /* Light gray background on hover */
+}
+
+/* Ensure all td cells in hovered rows take the hover effect */
+.uniform-table tbody tr:hover td {
+    background-color: #e9ecef !important; /* Apply the same hover color to all cells in a row */
+}
+
+/* Sticky header */
+.uniform-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #f8f9fa; /* Light background for sticky header */
+}
+
+/* Optional: Style for header cells */
+.uniform-table thead th {
+    background-color: #f8f9fa; /* Set a light color for the header */
+    border-bottom: 2px solid #dee2e6; /* Add a border for distinction */
+}
+
+/* Optional: Ensure all cells have a border */
+.uniform-table td, .uniform-table th {
+    border: 1px solid #dee2e6; /* Add border to cells */
+}
